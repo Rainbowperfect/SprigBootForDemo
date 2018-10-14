@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.person.mapper.UserMapper">
+    <!--保存用户-->
+    <insert id="saveUser" parameterType="uSEr" useGeneratedKeys="true" keyProperty="id">
+        <!--<selectKey keyProperty="id" order="AFTER" resultType="long">
+            SELECT LAST_INSERT_ID();
+        </selectKey>-->
+        INSERT INTO `tb_user`
+                    (`name`,
+                     `age`)
+        VALUES (#{name},
+                #{age});
+    </insert>
+
+    <!--跟据id查询用户信息-->
+    <select id="queryUserById" parameterType="long" resultType="user">
+        SELECT
+          `id`,
+          `name`,
+          `age`
+        FROM `tb_user`
+        WHERE id = #{id123}
+        /*and name like '%${value}%'*/
+    </select>
+</mapper>
